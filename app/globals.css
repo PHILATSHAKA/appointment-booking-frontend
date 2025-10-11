@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Make react-datepicker calendar stretch full width */
+.react-datepicker {
+  width: 100%;
+}
+
+.react-datepicker__month-container {
+  width: 100%;
+}
+
+.react-datepicker__week {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr); /* 7 equal columns */
+}
+
+.react-datepicker__day {
+  width: 100% !important;
+  line-height: 2.5rem; /* taller for touch */
+  margin: 0 !important; /* remove default spacing */
+  text-align: center;
+}
+
+/* Calendar header styling */
+.react-datepicker__header {
+  background-color: white; /* make it clean, not gray */
+  border-bottom: 1px solid #e5e7eb; /* Tailwind gray-200 */
+  padding-top: 0.5rem;
+}
+
+/* Month text */
+.react-datepicker__current-month {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #111827; /* Tailwind gray-900 */
+}
+
+/* Prev/Next buttons */
+.react-datepicker__navigation {
+  top: 0.75rem; /* vertically center better */
+  line-height: 1.5rem;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #13a4ec; /* your primary color */
+  border-width: 2px 2px 0 0; /* make it bolder */
+}
+/* Scope overrides to our calendar only */
+.dp .react-datepicker {
+  width: 100%;
+}
+
+/* Make weekday header align with days */
+.dp .react-datepicker__day-names {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  column-gap: 0;
+}
+.dp .react-datepicker__day-name {
+  width: auto !important;
+  margin: 0 !important;
+  text-align: center;
+  font-weight: 600;
+  color: #64748b; /* slate-500 */
+}
+
+/* Make each week 7 equal columns so day cells line up */
+.dp .react-datepicker__week {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  column-gap: 0;
+}
+
+/* Day cells fill their column, no weird margins */
+.dp .react-datepicker__day {
+  width: auto !important;
+  margin: 0 !important;
+  line-height: 2.25rem; /* taller click target */
+  text-align: center;
+  border-radius: 9999px; /* rounded-full */
+}
+
+/* Hover + selected styles (Tailwind-ish palette) */
+.dp .react-datepicker__day:not(.react-datepicker__day--disabled):hover {
+  background: rgb(19 164 236 / 0.15); /* primary/15 */
+}
+
+.dp .dp-day-selected,
+.dp .react-datepicker__day--selected {
+  background: #13a4ec !important; /* your primary */
+  color: #fff !important;
+}
+
+/* Today outline (not selected) */
+.dp .react-datepicker__day--today:not(.react-datepicker__day--selected) {
+  box-shadow: inset 0 0 0 2px #13a4ec;
+}
+
+/* Dim outside-month days but keep alignment */
+.dp .react-datepicker__day--outside-month {
+  color: #94a3b8; /* slate-400 */
+}
+
+/* Header cleanup (we use a custom header, but keep defaults neat) */
+.dp .react-datepicker__header {
+  background: transparent !important;
+  border-bottom: 1px solid #e5e7eb; /* gray-200 */
+}
+
+.dp .react-datepicker__day--today {
+  box-shadow: none !important;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #13a4ec #f1f1f1; /* thumb and track colors */
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px; /* narrow scrollbar */
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 9999px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #13a4ec;
+  border-radius: 9999px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: #0d86c6; /* darker blue on hover */
+}
