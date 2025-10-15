@@ -1,13 +1,18 @@
-import Link from "next/link";
-import { Manrope } from "next/font/google";
-import { ClockIcon, BellAlertIcon, LockClosedIcon } from "@heroicons/react/24/outline";
+"use client";
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
-});
+import Link from "next/link";
+
+import { ClockIcon, BellAlertIcon, LockClosedIcon } from "@heroicons/react/24/outline";
+import { useEffect } from "react";
+import { useBooking } from "@/app/context/BookingContext";
 
 export default function LandingPage() {
+  const { reset } = useBooking();
+
+  useEffect(() => {
+    reset();
+  }, []);
+
   const appointmentFeatures = [
     {
       icon: ClockIcon,
@@ -25,52 +30,11 @@ export default function LandingPage() {
       desc: "We use encryption and industry best practices to keep your data safe.",
     },
   ];
+
   return (
-    // <main
-    //   className={`${manrope.className} flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-background-light via-white to-background-light dark:from-background-dark dark:via-gray-900 dark:to-background-dark`}
-    // >
-    //   <div className="flex flex-grow items-center justify-center">
-    //     <div className="mx-auto w-full max-w-md p-6">
-    //       <section className="space-y-6 text-center">
-    //         <h1 className="text-4xl font-extrabold leading-tight text-gray-900 dark:text-white sm:text-4xl">
-    //           Book Your Appointment
-    //         </h1>
-    //         <p className="mx-auto max-w-md text-lg text-gray-600 dark:text-gray-300">
-    //           Schedule your visit to our branch at your convenience. Our team is ready to assist you
-    //           with your financial needs.
-    //         </p>
-    //         <div className="flex justify-center">
-    //           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 shadow-md">
-    //             <svg
-    //               xmlns="http://www.w3.org/2000/svg"
-    //               className="h-10 w-10 text-primary"
-    //               fill="none"
-    //               viewBox="0 0 24 24"
-    //               stroke="currentColor"
-    //               strokeWidth={2}
-    //             >
-    //               <path
-    //                 strokeLinecap="round"
-    //                 strokeLinejoin="round"
-    //                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-    //               />
-    //             </svg>
-    //           </div>
-    //         </div>
-    //         <Link
-    //           href="/service-type"
-    //           role="button"
-    //           className="block w-full rounded-lg bg-primary px-6 py-3 text-lg font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-primary/90 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-    //         >
-    //           Book Now
-    //         </Link>
-    //       </section>
-    //     </div>
-    //   </div>
-    // </main>
     <div className="flex min-h-screen flex-col bg-background-light font-display text-gray-800 dark:bg-background-dark dark:text-gray-200">
       {/* Hero */}
-      <main className="flex-grow">
+      <main className="grow">
         <section className="from-primary-50 dark:to-primary-950 relative overflow-hidden bg-gradient-to-r to-white dark:from-background-dark">
           <div className="mx-auto max-w-4xl px-6 py-20 text-center">
             <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-[#0033a0] sm:text-4xl lg:text-5xl">
@@ -107,8 +71,8 @@ export default function LandingPage() {
                   key={feature.title}
                   className="rounded-xl border border-gray-200 bg-white p-8 text-center shadow-sm transition hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
                 >
-                  <div className="bg-primary-100 text-primary-600 dark:bg-primary-900/50 dark:text-primary-400 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full shadow-[0_4px_10px_rgba(19,164,236,0.4)] transition-transform duration-300 group-hover:scale-110">
-                    <feature.icon className="h-8 w-8" aria-hidden="true" />
+                  <div className="bg-primary-100 text-primary-600 dark:bg-primary-900/50 dark:text-primary-400 mx-auto mb-6 flex size-16 items-center justify-center rounded-full shadow-[0_4px_10px_rgba(19,164,236,0.4)] transition-transform duration-300 group-hover:scale-110">
+                    <feature.icon className="size-8" aria-hidden="true" />
                   </div>
                   <h3 className="text-md mb-2 font-bold text-gray-900 dark:text-white sm:text-lg">
                     {feature.title}

@@ -1,16 +1,27 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import localFont from "next/font/local";
 
-import "./globals.css";
+import "@/app/globals.css";
+import { BookingProvider } from "@/app/context/BookingContext";
 
-import { Manrope } from "next/font/google";
-import { BookingProvider } from "./context/BookingContext";
-
-const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "700", "800"] });
+const manrope = localFont({
+  src: [
+    { path: "../public/fonts/Manrope/Manrope-Regular.ttf", weight: "400" },
+    { path: "../public/fonts/Manrope/Manrope-Medium.ttf", weight: "500" },
+    { path: "../public/fonts/Manrope/Manrope-Bold.ttf", weight: "700" },
+    { path: "../public/fonts/Manrope/Manrope-ExtraBold.ttf", weight: "800" },
+  ],
+  variable: "--font-manrope",
+  display: "swap", // optional, like before
+});
 
 export const metadata: Metadata = {
   title: "Appointment Booking",
   description: "Book appointments at your preferred branch",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -29,13 +40,15 @@ export default function RootLayout({
               width={120}
               height={50}
               priority
-              className="h-auto w-auto"
+              className="size-auto"
             />
           </div>
         </header>
         <main className="flex min-h-screen items-start justify-center p-6">
           <div className="w-full max-w-md rounded-full sm:max-w-xl lg:max-w-2xl">
+            {/* <PageContainer> */}
             <BookingProvider>{children}</BookingProvider>
+            {/* </PageContainer> */}
           </div>
         </main>
       </body>

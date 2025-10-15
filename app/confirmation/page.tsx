@@ -1,43 +1,47 @@
 "use client";
 
-import { Manrope } from "next/font/google";
-import { useBooking } from "../context/BookingContext";
-import PageContainer from "../components/PageContainer";
+import { useBooking } from "@/app/context/BookingContext";
+import PageContainer from "@/app/components/PageContainer";
 import { useRouter } from "next/navigation";
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
-});
-
-// Display date in SAST
-function formatDate(dateString: string) {
-  return new Intl.DateTimeFormat("en-ZA", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "Africa/Johannesburg",
-  }).format(new Date(dateString));
-}
-
-// Display time range in SAST
-function formatTime(start: string, end: string) {
-  const fmt = new Intl.DateTimeFormat("en-ZA", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-    timeZone: "Africa/Johannesburg",
-  });
-
-  return `${fmt.format(new Date(start))} – ${fmt.format(new Date(end))}`;
-}
+import { Button } from "@/app/components/Button";
 
 export default function ConfirmationPage() {
   const { booking } = useBooking();
   const router = useRouter();
 
-  console.log(booking);
+  function handleBackHome() {
+    router.push("/"); // navigate back to home page
+  }
+
+  // Display date in SAST
+  function formatDate(dateString?: string) {
+    if (!dateString) return "";
+    return new Intl.DateTimeFormat("en-ZA", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "Africa/Johannesburg",
+    }).format(new Date(dateString));
+  }
+
+  // Display time range in SAST
+  function formatTime(start?: string, end?: string) {
+    if (!start || !end) return "";
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) return "";
+
+    const fmt = new Intl.DateTimeFormat("en-ZA", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Africa/Johannesburg",
+    });
+
+    return `${fmt.format(startDate)} – ${fmt.format(endDate)}`;
+  }
 
   return (
     <PageContainer>
@@ -49,7 +53,7 @@ export default function ConfirmationPage() {
       </header>
 
       {/* Main */}
-      <main className="flex flex-grow flex-col items-center justify-center px-4 text-center">
+      <main className="flex grow flex-col items-center justify-center px-4 text-center">
         <div className="mb-6 rounded-full bg-primary/10 p-4 dark:bg-primary/20">
           <span className="text-4xl text-primary">✔</span>
         </div>
@@ -62,7 +66,7 @@ export default function ConfirmationPage() {
         </p>
       </main>
 
-      {/* Appointment Details */}
+      {/* Appointment Details Section */}
       <div className="m-4 rounded-xl bg-white p-6 dark:bg-slate-800/50">
         <h3 className="mb-4 text-lg font-bold text-slate-900 dark:text-white">
           Appointment Details
@@ -97,14 +101,14 @@ export default function ConfirmationPage() {
 
       {/* Footer */}
       <footer className="sticky bottom-0 border-t border-slate-200 bg-background-light p-4 dark:border-slate-700 dark:bg-background-dark">
-        <button
-          onClick={() => {
-            router.push("/");
-          }}
-          className="w-full rounded-lg bg-primary px-4 py-3 font-bold text-white transition-colors hover:bg-primary/90 dark:bg-slate-700 dark:text-white"
+        <Button
+          onClick={handleBackHome}
+          disabled={false}
+          loading={false}
+          className="h-12 w-full bg-primary text-base font-bold text-white shadow-md transition-all hover:scale-[1.01] hover:bg-primary/90"
         >
           Back to Home
-        </button>
+        </Button>
       </footer>
     </PageContainer>
   );

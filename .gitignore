@@ -134,11 +134,8 @@ dist
 !.yarn/sdks
 !.yarn/versions
 
-<<<<<<< Updated upstream
-# Vite logs files
-vite.config.js.timestamp-*
+
 vite.config.ts.timestamp-*
-=======
 # testing
 /coverage
 
@@ -166,7 +163,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
 
 # vercel
 .vercel
@@ -174,4 +171,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
->>>>>>> Stashed changes
+

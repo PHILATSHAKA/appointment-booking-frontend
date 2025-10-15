@@ -1,11 +1,17 @@
 "use client";
 
-import { Loader2 } from "lucide-react";
+import Image from "next/image";
 
 export default function Loading() {
   return (
     <div className="flex items-center justify-center py-8">
-      <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      <Image
+        src="/loader.svg"
+        width={20}
+        height={20}
+        alt="Loading..."
+        className="size-14 animate-none"
+      />
     </div>
   );
 }
