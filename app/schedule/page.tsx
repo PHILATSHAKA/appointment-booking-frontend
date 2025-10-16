@@ -72,7 +72,7 @@ export default function SchedulePage() {
     >
       {/* Date selector */}
       <section className="mb-8">
-        <h2 className="text-md mb-6 font-bold tracking-tight text-gray-600 dark:text-gray-100 sm:text-xl">
+        <h2 className="text-md sm:text-md mb-6 font-semibold tracking-tight text-gray-600 dark:text-gray-100">
           Choose a Date
         </h2>
         <DatePicker
@@ -153,7 +153,7 @@ export default function SchedulePage() {
 
       {/* Time slots */}
       <section>
-        <h2 className="text-md mb-2 font-bold tracking-tight text-gray-600 dark:text-gray-100 sm:text-xl">
+        <h2 className="text-md sm:text-md mb-2 font-semibold tracking-tight text-gray-600 dark:text-gray-100">
           Choose a Time
         </h2>
         <p className="mb-4 text-sm text-slate-500 dark:text-slate-400">For {selectedDate}</p>
