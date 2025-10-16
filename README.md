@@ -55,10 +55,10 @@ npm run dev
 🐳 Run with Docker
 
 1. Build the Docker image
-   docker build -t appointment-booking-frontend .
+   docker compose build --no-cache
 
 2. Run the container
-   docker run --env-file .env -p 3000:3000 appointment-booking-frontend
+   docker compose up --build
 
 The app will be available at http://localhost:3000
 
